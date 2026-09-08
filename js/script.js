@@ -282,7 +282,7 @@ const validateForm = () => {
 
 
 // ========================================
-// Contact Form 제출 (Formspree 비동기 전송)
+// Contact Form 제출 (Formspree AJAX 실제 전송)
 // ========================================
 
 contactForm.addEventListener("submit", async event => {
@@ -302,6 +302,8 @@ contactForm.addEventListener("submit", async event => {
     const data = new FormData(contactForm);
 
     try {
+        console.log("Formspree 전송 시작:", contactForm.action);
+
         const response = await fetch(contactForm.action, {
             method: "POST",
             body: data,
@@ -310,21 +312,25 @@ contactForm.addEventListener("submit", async event => {
             }
         });
 
+        console.log("Formspree 응답 상태:", response.status);
+
         if (response.ok) {
             formSuccess.style.color = "#2e7d32";
             formSuccess.textContent = "문의가 성공적으로 전송되었습니다! 곧 회신드리겠습니다.";
             contactForm.reset();
         } else {
             const result = await response.json();
+            console.error("Formspree 응답 에러:", result);
+
             formSuccess.style.color = "#d32f2f";
             if (result && result.errors) {
                 formSuccess.textContent = result.errors.map(err => err.message).join(", ");
             } else {
-                formSuccess.textContent = "전송에 실패했습니다. 다시 시도해주세요.";
+                formSuccess.textContent = `전송에 실패했습니다. (코드: ${response.status})`;
             }
         }
     } catch (error) {
-        console.error(error);
+        console.error("네트워크 에러 발생:", error);
         formSuccess.style.color = "#d32f2f";
         formSuccess.textContent = "네트워크 오류로 전송하지 못했습니다.";
     } finally {
@@ -343,5 +349,5 @@ contactForm.querySelectorAll("input, textarea").forEach(input => {
 });
 
 
-// 페이지 로드 시 GitHub 프로젝트 불러오기 실행
+// 페이지 로드 시 실행
 loadProjects();
