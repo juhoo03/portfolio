@@ -1,0 +1,1187 @@
+/* ========================================
+   기본 변수
+======================================== */
+
+:root {
+    --bg: #fff;
+    --bg2: #f5f5f5;
+    --text: #171717;
+    --muted: #666;
+    --accent: #111;
+    --border: #ddd;
+    --card: #fff;
+
+    --shadow: 0 15px 40px rgba(0, 0, 0, .08);
+
+    --max: 1120px;
+    --pad: 96px;
+    --radius: 18px;
+
+    --tr: .3s ease;
+}
+
+
+/* ========================================
+   다크 모드
+======================================== */
+
+[data-theme="dark"] {
+    --bg: #111;
+    --bg2: #181818;
+    --text: #f5f5f5;
+    --muted: #aaa;
+    --accent: #fff;
+    --border: #333;
+    --card: #1b1b1b;
+
+    --shadow: 0 15px 40px rgba(0, 0, 0, .35);
+}
+
+
+/* ========================================
+   전체 기본 설정
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
+    line-height: 1.7;
+
+    transition:
+        background-color var(--tr),
+        color var(--tr);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* ========================================
+   공통
+======================================== */
+
+.container {
+    width: min(90%, var(--max));
+    margin: auto;
+}
+
+.section {
+    padding: var(--pad) 0;
+}
+
+.section-alt {
+    background: var(--bg2);
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+
+    color: var(--muted);
+
+    font-size: .8rem;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+}
+
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section-heading h2 {
+    margin-bottom: 10px;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+
+    line-height: 1.1;
+}
+
+.section-heading > p:last-child {
+    color: var(--muted);
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.site-header {
+    position: fixed;
+
+    z-index: 1000;
+
+    top: 0;
+
+    width: 100%;
+
+    transition:
+        background-color var(--tr),
+        box-shadow var(--tr);
+}
+
+.site-header.scrolled {
+    background: var(--bg);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, .08);
+}
+
+.navbar {
+    display: flex;
+
+    min-height: 76px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(90%, var(--max));
+
+    margin: auto;
+}
+
+.logo {
+    font-size: 1.2rem;
+
+    font-weight: 900;
+
+    letter-spacing: .08em;
+}
+
+.menu-toggle {
+    display: flex;
+
+    width: 42px;
+    height: 42px;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 0;
+
+    background: transparent;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    background: var(--text);
+}
+
+.nav-menu {
+    position: absolute;
+
+    top: 76px;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+
+    flex-direction: column;
+
+    padding: 20px 5%;
+
+    background: var(--bg);
+
+    border-top:
+        1px solid var(--border);
+}
+
+.nav-menu.active {
+    display: flex;
+}
+
+.nav-menu a,
+.theme-toggle {
+    padding: 12px 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--text);
+
+    text-align: left;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+    display: flex;
+
+    min-height: 100vh;
+
+    align-items: center;
+
+    padding-top: 120px;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    margin-bottom: 28px;
+
+    font-size:
+        clamp(
+            3.8rem,
+            12vw,
+            8rem
+        );
+
+    line-height: .95;
+
+    letter-spacing: -.06em;
+}
+
+.hero h1 span {
+    color: var(--muted);
+}
+
+.hero-description {
+    max-width: 620px;
+
+    margin-bottom: 35px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+}
+
+.hero-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.button {
+    display: inline-flex;
+
+    min-height: 48px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 24px;
+
+    border:
+        1px solid var(--accent);
+
+    border-radius: 999px;
+
+    font-weight: 700;
+
+    transition:
+        transform var(--tr),
+        background-color var(--tr),
+        color var(--tr);
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button-primary {
+    background: var(--accent);
+
+    color: var(--bg);
+}
+
+.button-secondary {
+    background: transparent;
+
+    color: var(--text);
+}
+
+
+/* ========================================
+   ABOUT
+======================================== */
+
+.about-grid {
+    display: grid;
+
+    gap: 40px;
+}
+
+.profile-card {
+    min-height: 400px;
+
+    overflow: hidden;
+
+    border-radius: var(--radius);
+
+    background: var(--bg2);
+
+    box-shadow: var(--shadow);
+}
+
+.profile-image,
+.profile-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-image img {
+    min-height: 400px;
+
+    object-fit: cover;
+}
+
+.about-content h3 {
+    margin-bottom: 20px;
+
+    font-size: 2rem;
+}
+
+.about-content p {
+    margin-bottom: 18px;
+
+    color: var(--muted);
+}
+
+.about-info {
+    display: grid;
+
+    gap: 16px;
+
+    margin-top: 35px;
+}
+
+.about-info div {
+    padding-top: 15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.about-info span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: .8rem;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   SKILLS
+======================================== */
+
+/*
+    Skills 전체 구조
+
+    데스크톱
+    ┌──────────┬──────────┐
+    │    01    │    02    │
+    │          │          │
+    │    03    │    04    │
+    └──────────┴──────────┘
+
+    모바일
+    ┌──────────────┐
+    │      01      │
+    ├──────────────┤
+    │      02      │
+    ├──────────────┤
+    │      03      │
+    ├──────────────┤
+    │      04      │
+    └──────────────┘
+*/
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+}
+
+
+/* ========================================
+   SKILL CARD
+======================================== */
+
+/*
+    카드 내부 구조
+
+    01     Circuits & Simulation
+
+
+           PSpice, OrCAD, Circuit Design
+*/
+
+.skill-card {
+    display: grid;
+
+    /*
+        01 영역 + 제목 영역
+    */
+    grid-template-columns: 60px 1fr;
+
+    /*
+        첫 번째 줄 = 번호 + 제목
+        두 번째 줄 = 설명
+    */
+    grid-template-rows: auto auto;
+
+    /*
+        전체 내용을 카드 위쪽에 배치
+    */
+    align-content: start;
+
+    /*
+        카드 높이
+    */
+    min-height: 300px;
+
+    /*
+        카드 내부 여백
+    */
+    padding: 48px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--card);
+
+    transition:
+        transform var(--tr),
+        box-shadow var(--tr);
+}
+
+
+/* ========================================
+   SKILL CARD HOVER
+======================================== */
+
+.skill-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* ========================================
+   SKILL NUMBER
+======================================== */
+
+/*
+    01
+    02
+    03
+    04
+
+    제목과 정확히 같은 기준선에 맞춤
+*/
+
+.skill-card > span {
+    grid-column: 1;
+    grid-row: 1;
+
+    font-size: 1rem;
+
+    font-weight: 500;
+
+    /*
+        제목과 같은 line-height
+    */
+    line-height: 1.3;
+
+    /*
+        핵심:
+        번호와 제목의 글자 기준선을 맞춤
+    */
+    align-self: baseline;
+
+    color: var(--muted);
+}
+
+
+/* ========================================
+   SKILL TITLE
+======================================== */
+
+/*
+    Circuits & Simulation
+    Digital Logic & Hardware
+    Signals & Modeling
+    Embedded & Systems
+*/
+
+.skill-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+
+    /*
+        제목 크기
+    */
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+    /*
+        기본 margin 제거
+    */
+    margin: 0;
+
+    /*
+        번호와 동일한 line-height
+    */
+    line-height: 1.3;
+
+    /*
+        핵심:
+        01과 제목의 기준선을 맞춤
+    */
+    align-self: baseline;
+
+    letter-spacing: -.025em;
+}
+
+
+/* ========================================
+   SKILL DESCRIPTION
+======================================== */
+
+/*
+    PSpice, OrCAD, Circuit Design
+
+    제목과 설명 사이를 넓혀서
+    설명을 아래쪽으로 배치
+*/
+
+.skill-card p {
+    grid-column: 2;
+    grid-row: 2;
+
+    /*
+        제목과 설명 사이의 간격
+
+        숫자를 크게 할수록
+        설명이 더 아래로 내려감
+    */
+    margin-top: 72px;
+
+    font-size: 1.15rem;
+
+    line-height: 1.6;
+
+    color: var(--muted);
+}
+
+
+/* ========================================
+   PROJECTS
+======================================== */
+
+.project-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.project-card {
+    display: flex;
+
+    min-height: 280px;
+
+    flex-direction: column;
+
+    padding: 28px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--card);
+
+    transition:
+        transform var(--tr),
+        box-shadow var(--tr);
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow);
+}
+
+.project-card h3 {
+    margin: 14px 0 10px;
+
+    font-size: 1.4rem;
+}
+
+.project-card p {
+    color: var(--muted);
+}
+
+.project-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: auto;
+
+    padding-top: 25px;
+}
+
+.project-meta span {
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background: var(--bg2);
+
+    color: var(--muted);
+
+    font-size: .8rem;
+}
+
+.project-link {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   PROJECT STATUS
+======================================== */
+
+.project-status {
+    display: flex;
+
+    min-height: 180px;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+    color: var(--muted);
+
+    text-align: center;
+}
+
+.project-status.hidden {
+    display: none;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+
+    border:
+        3px solid var(--border);
+
+    border-top-color: var(--text);
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.retry-button {
+    margin-top: 10px;
+
+    padding: 9px 18px;
+
+    border:
+        1px solid var(--text);
+
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   CONTACT
+======================================== */
+
+.contact-form {
+    max-width: 760px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: 0;
+
+    background: var(--card);
+
+    color: var(--text);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--text);
+
+    box-shadow:
+        0 0 0 3px var(--border);
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: #b00020;
+}
+
+.error-message {
+    display: block;
+
+    min-height: 22px;
+
+    margin-top: 5px;
+
+    color: #b00020;
+}
+
+.success-message {
+    margin-top: 18px;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+    padding: 30px 0;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: .9rem;
+
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+
+    gap: 18px;
+}
+
+
+/* ========================================
+   SCROLL TOP
+======================================== */
+
+.scroll-top {
+    position: fixed;
+
+    z-index: 900;
+
+    right: 20px;
+    bottom: 20px;
+
+    display: none;
+
+    width: 48px;
+    height: 48px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    box-shadow: var(--shadow);
+}
+
+.scroll-top.visible {
+    display: block;
+}
+
+
+/* ========================================
+   등장 애니메이션
+======================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (min-width: 768px) {
+
+    .navbar {
+        min-height: 84px;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        position: static;
+
+        display: flex;
+
+        width: auto;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 28px;
+
+        padding: 0;
+
+        border: 0;
+
+        background: transparent;
+    }
+
+    .nav-menu a,
+    .theme-toggle {
+        padding: 0;
+    }
+
+
+    /* ABOUT */
+
+    .about-grid {
+        grid-template-columns:
+            .8fr 1.2fr;
+
+        align-items: center;
+    }
+
+
+    /* SKILLS */
+
+    .skills-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* FOOTER */
+
+    .footer-content {
+        flex-direction: row;
+
+        text-align: left;
+    }
+
+}
+
+
+/* ========================================
+   DESKTOP
+======================================== */
+
+@media (min-width: 1024px) {
+
+    .section {
+        padding: 120px 0;
+    }
+
+
+    /* ----------------------------------------
+       Skills 2 x 2
+    ---------------------------------------- */
+
+    .skills-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 24px;
+    }
+
+
+    /* ----------------------------------------
+       Skill Card
+    ---------------------------------------- */
+
+    .skill-card {
+        min-height: 300px;
+
+        padding: 48px;
+
+        /*
+            번호와 제목의 가로 간격
+        */
+        grid-template-columns:
+            60px 1fr;
+    }
+
+
+    /* ----------------------------------------
+       Skill Title
+    ---------------------------------------- */
+
+    .skill-card h3 {
+        font-size: 1.8rem;
+
+        /*
+            번호와 동일한 기준선
+        */
+        line-height: 1.3;
+
+        align-self: baseline;
+    }
+
+
+    /* ----------------------------------------
+       Skill Number
+    ---------------------------------------- */
+
+    .skill-card > span {
+        line-height: 1.3;
+
+        align-self: baseline;
+    }
+
+
+    /* ----------------------------------------
+       Skill Description
+    ---------------------------------------- */
+
+    .skill-card p {
+        font-size: 1.15rem;
+
+        /*
+            설명을 아래로
+        */
+        margin-top: 72px;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 767px) {
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+
+    /* ----------------------------------------
+       모바일 Skill Card
+    ---------------------------------------- */
+
+    .skill-card {
+        min-height: 250px;
+
+        padding: 32px;
+
+        /*
+            모바일에서는 번호 영역을
+            조금 줄임
+        */
+        grid-template-columns:
+            48px 1fr;
+    }
+
+
+    /* ----------------------------------------
+       모바일 제목
+    ---------------------------------------- */
+
+    .skill-card h3 {
+        font-size: 1.4rem;
+
+        line-height: 1.3;
+
+        align-self: baseline;
+    }
+
+
+    /* ----------------------------------------
+       모바일 번호
+    ---------------------------------------- */
+
+    .skill-card > span {
+        font-size: .9rem;
+
+        line-height: 1.3;
+
+        align-self: baseline;
+    }
+
+
+    /* ----------------------------------------
+       모바일 설명
+    ---------------------------------------- */
+
+    .skill-card p {
+        margin-top: 50px;
+
+        font-size: 1rem;
+
+        line-height: 1.6;
+    }
+
+}
+
+
+/* ========================================
+   모션 줄이기 설정
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        transition: none;
+    }
+
+}
