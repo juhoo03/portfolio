@@ -223,6 +223,49 @@
 
 ### 3. 비동기 처리 및 데이터 가공
 
+
+### 🔄 "이벤트 ➔ 상태 변경 ➔ 화면 업데이트" 흐름 분석 (다크 모드 예시)
+
+---
+
+#### 1. 단계별 실행 흐름
+
+1. **이벤트 (Event)**
+   * 사용자가 상단 테마 토글 버튼(`themeToggle`)을 클릭하면 `addEventListener("click", ...)` 리스너가 작동합니다.
+2. **상태 변경 (State Change)**
+   * `document.documentElement` 요소의 `data-theme` 속성을 조회하여 라이트/다크 모드 상태를 스위칭합니다.
+   * `localStorage.setItem("theme", ...)`을 호출하여 변경된 상태를 저장소에 저장, 새로고침 후에도 상태가 유지되도록 처리합니다.
+3. **화면 업데이트 (UI Update)**
+   * `themeToggle.textContent`를 변경하여 버튼의 아이콘(☀️ / 🌙)을 업데이트합니다.
+   * 최상단 DOM에 부여된 `data-theme="dark"` 속성을 감지하여 CSS 선택자가 반응하고, `:root`에 선언된 전역 색상 변수가 교체되면서 사이트 전체 테마 컬러가 일괄 렌더링됩니다.
+
+---
+
+#### 2. 프로젝트 내 핵심 구현 코드
+
+##### **A. 스크립트 로직 (`js/script.js`)**
+```javascript
+// [1. 이벤트] 테마 토글 버튼 클릭 이벤트 바인딩
+themeToggle.addEventListener("click", () => {
+    // [2. 상태 변경] 현재 다크 모드 적용 여부 확인
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+
+    if (dark) {
+        // 라이트 모드로 상태 전환 및 저장
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        
+        // [3. 화면 업데이트] 버튼 아이콘 변경
+        themeToggle.textContent = "🌙";
+    } else {
+        // 다크 모드로 상태 전환 및 저장
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        
+        // [3. 화면 업데이트] 버튼 아이콘 변경
+        themeToggle.textContent = "☀️";
+    }
+});
 * **`async/await` 및 `try/catch` 기반 예외 처리**
   * **설명**: GitHub API 호출 시 `async/await` 문법을 적용하고, `try...catch` 구문을 통해 비동기 통신 성공/실패(네트워크 에러, HTTP 에러)를 명확하게 분기하여 안정성을 확보했습니다.
   * **코드 (`js/script.js`)**:
