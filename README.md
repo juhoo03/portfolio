@@ -321,6 +321,7 @@ themeToggle.addEventListener("click", () => {
     ```
 
 ---
+---
 
 ### 4. 반응형 및 상태 관리 전략
 
