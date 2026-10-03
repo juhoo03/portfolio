@@ -268,6 +268,11 @@ themeToggle.addEventListener("click", () => {
 });
 * **`async/await` 및 `try/catch` 기반 예외 처리**
   * **설명**: GitHub API 호출 시 `async/await` 문법을 적용하고, `try...catch` 구문을 통해 비동기 통신 성공/실패(네트워크 에러, HTTP 에러)를 명확하게 분기하여 안정성을 확보했습니다.
+1. **`async/await` (비동기 처리)**
+   * `fetch` API를 통한 네트워크 데이터 수신을 동기식 코드 흐름처럼 작성하여 콜백 지옥(Callback Hell) 및 `.then()` 체이닝을 배제하고 코드 가독성을 극대화했습니다.
+2. **`try...catch` (예외 핸들링)**
+   * **`try` 블록**: API 통신 및 데이터 가공 정상 로직을 수행합니다.
+   * **`catch` 블록**: 네트워크 연결 단절, HTTP 에러(404, 500 등) 발생 시 예외를 캡처하여 사용자에게 '에러 상태 UI' 및 '재시도 버튼'을 동적으로 노출합니다.
   * **코드 (`js/script.js`)**:
     ```javascript
     async function loadProjects() {
@@ -321,7 +326,7 @@ themeToggle.addEventListener("click", () => {
     ```
 
 ---
----
+
 
 ### 4. 반응형 및 상태 관리 전략
 
