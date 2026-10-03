@@ -304,26 +304,29 @@ themeToggle.addEventListener("click", () => {
     ```
 
 * **Flexbox 및 Grid 적재적소 활용**
-  * **Flexbox (1차원 정렬)**: 네비게이션 바, 버튼 그룹, 푸터 등 단일 방향 선형 정렬 및 요소 간 공간 배분에 적용했습니다.
-    ```css
-    .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    ```
-  * **Grid (2차원 정렬)**: 스킬/프로젝트 카드 격자 구조 및 카드 내부 구획 정렬에 적용했습니다.
-    ```css
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-    }
-    .skill-card {
-        display: grid;
-        grid-template-columns: 60px 1fr;
-    }
-    ```
+  #### 1. Flexbox와 Grid 역할 및 특징 비교
+
+| 구분 | Flexbox (1차원 레이아웃) | Grid (2차원 레이아웃) |
+| :--- | :--- | :--- |
+| **특성** | 가로 또는 세로 단일 축 방향 정렬 | 가로(행)와 세로(열) 동시 구획 및 제어 |
+| **주요 목적** | 요소 간 공간 분배 및 1줄 정렬 | 규칙적인 격자(바둑판) 배율 및 레이아웃 구성 |
+| **적용 영역** | 네비게이션 바, 버튼 그룹, 카드 메타 태그 | 스킬 카드 격자, 프로젝트 카드 목록, 카드 내부 구획 |
+
+---
+
+#### 2. 프로젝트 내 실제 적용 및 선택 이유
+
+##### **A. Flexbox 적용 (`css/style.css`)**
+* **적용 위치**: `.navbar`, `.hero-buttons`, `.project-meta`, `.footer-content`
+* **선택 이유**: 로고와 내비게이션 메뉴를 양 끝 정렬(`justify-content: space-between`)하거나 요소를 세로 중앙 정렬(`align-items: center`)하는 등 **1차원 선형 정렬 및 유동적인 공간 분배**에 가장 적합하여 채택했습니다.
+
+```css
+/* Flexbox 1차원 정렬 예시 */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 양 끝 균등 배분 */
+}
 
 ---
 
