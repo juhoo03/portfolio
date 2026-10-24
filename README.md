@@ -329,7 +329,7 @@ themeToggle.addEventListener("click", () => {
     align-items: center;
     justify-content: space-between; /* 양 끝 균등 배분 */
 }
-
+```
 ---
 
 
