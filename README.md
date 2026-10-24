@@ -267,6 +267,7 @@ themeToggle.addEventListener("click", () => {
         themeToggle.textContent = "☀️";
     }
 });
+```
 * **`async/await` 및 `try/catch` 기반 예외 처리**
   * **설명**: GitHub API 호출 시 `async/await` 문법을 적용하고, `try...catch` 구문을 통해 비동기 통신 성공/실패(네트워크 에러, HTTP 에러)를 명확하게 분기하여 안정성을 확보했습니다.
 1. **`async/await` (비동기 처리)**
